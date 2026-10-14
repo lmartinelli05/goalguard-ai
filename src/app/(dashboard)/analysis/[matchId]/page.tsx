@@ -2,10 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import VideoPlayer from '@/components/video/VideoPlayer';
-import Timeline from '@/components/analysis/Timeline';
-import HighlightList from '@/components/analysis/HighlightList';
-import BiomechanicalOverlay from '@/components/video/BiomechanicalOverlay';
+import VideoPlayer from '../../../components/video/VideoPlayer';
+import Timeline from '../../../components/analysis/Timeline';
+import HighlightList from '../../../components/analysis/HighlightList';
+import BiomechanicalOverlay from '../../../components/video/BiomechanicalOverlay';
 import { HighlightEvent, Match, TechnicalStandard, BiomechanicalFrame } from '@/types';
 import { Loader2, LayoutDashboard, FileText, Zap } from 'lucide-react';
 import Link from 'next/link';
@@ -31,7 +31,6 @@ const MOCK_EVENTS: HighlightEvent[] = [
   { id: 'ev_3', matchId: 'match_123', playerId: 'p_1', type: 'SAVE', startTime: 120.4, endTime: 128.1, label: 'Uscita alta decisa', isConfirmed: false, confidence: 0.78 },
 ];
 
-// Mocking a biomechanical frame for the current time
 const getMockFrame = (time: number): BiomechanicalFrame => ({
   timestamp: time,
   pose: [
@@ -78,7 +77,6 @@ export default function AnalysisPage() {
 
   const generateReport = () => {
     setIsAnalyzing(true);
-    // Simulate AI heavy lifting
     setTimeout(() => {
       setIsAnalyzing(false);
       router.push(`/analysis/${params.matchId}/report`);
